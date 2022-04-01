@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8341FC127F1E183002AC299 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8341FC027F1E183002AC299 /* Spotify.swift */; };
+		D8341FC327F1E2C7002AC299 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8341FC227F1E2C7002AC299 /* Song.swift */; };
+		D8AB553027F1F20200B7EC39 /* SpotifyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */; };
+		D8AB553227F1F72500B7EC39 /* WindowDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB553127F1F72500B7EC39 /* WindowDragView.swift */; };
 		D8C0737727F06451006F70F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0737627F06451006F70F1 /* AppDelegate.swift */; };
 		D8C0737927F06451006F70F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0737827F06451006F70F1 /* ViewController.swift */; };
 		D8C0737B27F06453006F70F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8C0737A27F06453006F70F1 /* Assets.xcassets */; };
@@ -14,12 +18,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8341FC027F1E183002AC299 /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
+		D8341FC227F1E2C7002AC299 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyWindowController.swift; sourceTree = "<group>"; };
+		D8AB553127F1F72500B7EC39 /* WindowDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDragView.swift; sourceTree = "<group>"; };
 		D8C0737327F06451006F70F1 /* MusicWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C0737627F06451006F70F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8C0737827F06451006F70F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D8C0737A27F06453006F70F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8C0737D27F06453006F70F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D8C0737F27F06453006F70F1 /* MusicWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicWidget.entitlements; sourceTree = "<group>"; };
+		D8C0738927F068FB006F70F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +42,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8341FC427F1E2CA002AC299 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8341FC227F1E2C7002AC299 /* Song.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D8AB553327F322BD00B7EC39 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8C0737827F06451006F70F1 /* ViewController.swift */,
+				D8AB553127F1F72500B7EC39 /* WindowDragView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D8C0736A27F06451006F70F1 = {
 			isa = PBXGroup;
 			children = (
@@ -52,13 +78,25 @@
 		D8C0737527F06451006F70F1 /* MusicWidget */ = {
 			isa = PBXGroup;
 			children = (
+				D8341FC427F1E2CA002AC299 /* Models */,
+				D8C0738927F068FB006F70F1 /* Info.plist */,
+				D8C0738627F06518006F70F1 /* Controllers */,
 				D8C0737627F06451006F70F1 /* AppDelegate.swift */,
-				D8C0737827F06451006F70F1 /* ViewController.swift */,
 				D8C0737A27F06453006F70F1 /* Assets.xcassets */,
 				D8C0737C27F06453006F70F1 /* Main.storyboard */,
 				D8C0737F27F06453006F70F1 /* MusicWidget.entitlements */,
+				D8AB553327F322BD00B7EC39 /* Views */,
 			);
 			path = MusicWidget;
+			sourceTree = "<group>";
+		};
+		D8C0738627F06518006F70F1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */,
+				D8341FC027F1E183002AC299 /* Spotify.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8AB553227F1F72500B7EC39 /* WindowDragView.swift in Sources */,
+				D8341FC327F1E2C7002AC299 /* Song.swift in Sources */,
+				D8AB553027F1F20200B7EC39 /* SpotifyWindowController.swift in Sources */,
+				D8341FC127F1E183002AC299 /* Spotify.swift in Sources */,
 				D8C0737927F06451006F70F1 /* ViewController.swift in Sources */,
 				D8C0737727F06451006F70F1 /* AppDelegate.swift in Sources */,
 			);
@@ -271,12 +313,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MusicWidget/MusicWidget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4QF44ESHRJ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MusicWidget/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -287,6 +331,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tomas.bolger.MusicWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -298,12 +343,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MusicWidget/MusicWidget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4QF44ESHRJ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MusicWidget/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -314,6 +361,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tomas.bolger.MusicWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
