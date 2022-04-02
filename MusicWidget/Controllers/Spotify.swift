@@ -298,22 +298,76 @@ class Spotify: NSObject {
         })
     }
     
-}
-
-
-
-
-extension NSAppleScript {
-    static func go(code: String, completionHandler: (Bool, NSAppleEventDescriptor?, NSDictionary?) -> Void) {
-        var error: NSDictionary?
-        let script = NSAppleScript(source: code)
-        let output = script?.executeAndReturnError(&error)
-        
-        if let out = output {
-            completionHandler(true, out, nil)
-        }
-        else {
-            completionHandler(false, nil, error)
-        }
+    func setShuffling(shuffling: Bool) {
+        let script = """
+        if application "Spotify" is running then
+            tell application "Spotify"
+                set shuffling to \(shuffling)
+            end tell
+        end if
+        """
+        NSAppleScript.go(code: script, completionHandler: {_ , out, err in
+            if let err = err {
+                print(err)
+            }
+        })
     }
+    
+    func isShuffling(completionHandler: @escaping (Bool) -> Void) {
+        let script = """
+        if application "Spotify" is running then
+            tell application "Spotify" to return shuffling
+        end if
+        """
+        NSAppleScript.go(code: script, completionHandler: {_ , out, err in
+            if let err = err {
+                print(err)
+            }
+            let result = out?.stringValue ?? ""
+            if (result == "true") {
+                completionHandler(true)
+                return
+            }
+            completionHandler(false)
+            return
+        })
+    }
+    
+    func setRepeating(repeating: Bool) {
+        let script = """
+        if application "Spotify" is running then
+            tell application "Spotify"
+                set repeating to \(repeating)
+            end tell
+        end if
+        """
+        NSAppleScript.go(code: script, completionHandler: {_ , out, err in
+            if let err = err {
+                print(err)
+            }
+        })
+    }
+    
+    func isRepeating(completionHandler: @escaping (Bool) -> Void) {
+        let script = """
+        if application "Spotify" is running then
+            tell application "Spotify" to return repeating
+        end if
+        """
+        NSAppleScript.go(code: script, completionHandler: {_ , out, err in
+            if let err = err {
+                print(err)
+            }
+            let result = out?.stringValue ?? ""
+            if (result == "true") {
+                completionHandler(true)
+                return
+            }
+            completionHandler(false)
+            return
+        })
+    }
+    
 }
+
+

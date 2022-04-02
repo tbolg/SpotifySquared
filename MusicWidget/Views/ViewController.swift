@@ -35,6 +35,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var controlViewSongArtistAlbumLabel: NSTextField!
     @IBOutlet weak var volumeImageView: NSImageView!
     
+    let tintColor = NSColor(calibratedRed: 160 / 255, green: 117 / 255, blue: 211 / 255, alpha: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,9 +71,29 @@ class ViewController: NSViewController {
         self.setVolumeImageView(volumeLevel: currentVolumeInteger)
         
         // Time slider
+        self.timeSlider.wantsLayer = true
+        self.timeSlider.trackFillColor = .white
         self.timeSlider.isContinuous = true
         self.updateTimeSlider()
         var _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeSlider), userInfo: nil, repeats: true)
+        
+        // Shuffle button
+        Spotify.shared.isShuffling { shuffling in
+            if (shuffling) {
+                self.shuffleButton.contentTintColor = self.tintColor
+            } else {
+                self.shuffleButton.contentTintColor = .secondaryLabelColor
+            }
+        }
+        
+        // Repeat button
+        Spotify.shared.isRepeating { repeating in
+            if (repeating) {
+                self.repeatButton.contentTintColor = self.tintColor
+            } else {
+                self.repeatButton.contentTintColor = .secondaryLabelColor
+            }
+        }
         
     }
     
@@ -170,13 +192,13 @@ class ViewController: NSViewController {
     }
     
     func hideControlView() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = .fade
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        self.controlView.layer?.add(transition, forKey: nil)
-        self.controlView.alphaValue = 0
-        self.controlView.isHidden = true
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.5
+            self.controlView.animator().alphaValue = 0
+        } completionHandler: {
+            self.controlView.isHidden = true
+            self.controlView.alphaValue = 1
+        }
     }
     
     func updatePlayPauseButton() {
@@ -195,12 +217,12 @@ class ViewController: NSViewController {
         // Get default output device
         var defaultOutputDeviceID = AudioDeviceID(0)
         var defaultOutputDeviceIDSize = UInt32(MemoryLayout.size(ofValue: defaultOutputDeviceID))
-
+        
         var getDefaultOutputDevicePropertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             mScope: kAudioObjectPropertyScopeGlobal,
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMain))
-
+        
         _ = AudioObjectGetPropertyData(
             AudioObjectID(kAudioObjectSystemObject),
             &getDefaultOutputDevicePropertyAddress,
@@ -212,12 +234,12 @@ class ViewController: NSViewController {
         // Set volume
         var volume = Float32(level)
         let volumeSize = UInt32(MemoryLayout.size(ofValue: volume))
-
+        
         var volumePropertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
             mElement: kAudioObjectPropertyElementMain)
-
+        
         _ = AudioObjectSetPropertyData(
             defaultOutputDeviceID,
             &volumePropertyAddress,
@@ -231,12 +253,12 @@ class ViewController: NSViewController {
         // Get default output device
         var defaultOutputDeviceID = AudioDeviceID(0)
         var defaultOutputDeviceIDSize = UInt32(MemoryLayout.size(ofValue: defaultOutputDeviceID))
-
+        
         var getDefaultOutputDevicePropertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             mScope: kAudioObjectPropertyScopeGlobal,
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMain))
-
+        
         _ = AudioObjectGetPropertyData(
             AudioObjectID(kAudioObjectSystemObject),
             &getDefaultOutputDevicePropertyAddress,
@@ -248,12 +270,12 @@ class ViewController: NSViewController {
         // Get volume
         var volume = Float32(0.0)
         var volumeSize = UInt32(MemoryLayout.size(ofValue: volume))
-
+        
         var volumePropertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
             mElement: kAudioObjectPropertyElementMain)
-
+        
         _ = AudioObjectGetPropertyData(
             defaultOutputDeviceID,
             &volumePropertyAddress,
@@ -284,6 +306,30 @@ class ViewController: NSViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "m:ss"
         return formatter.string(from: newDate)
+    }
+    
+    func setShufflingState() {
+        Spotify.shared.isShuffling { shuffling in
+            if (shuffling) {
+                Spotify.shared.setShuffling(shuffling: false)
+                self.shuffleButton.contentTintColor = .secondaryLabelColor
+                return
+            }
+            Spotify.shared.setShuffling(shuffling: true)
+            self.shuffleButton.contentTintColor = self.tintColor
+        }
+    }
+    
+    func setRepeatingState() {
+        Spotify.shared.isRepeating { repeating in
+            if (repeating) {
+                Spotify.shared.setRepeating(repeating: false)
+                self.repeatButton.contentTintColor = .secondaryLabelColor
+                return
+            }
+            Spotify.shared.setRepeating(repeating: true)
+            self.repeatButton.contentTintColor = self.tintColor
+        }
     }
     
     @IBAction func playPauseClicked(_ sender: Any) {
@@ -329,6 +375,14 @@ class ViewController: NSViewController {
     @IBAction func skipForwardClicked(_ sender: Any) {
         Spotify.shared.skipForward(seconds: 15)
         self.updateTimeSlider()
+    }
+    
+    @IBAction func shuffleClicked(_ sender: Any) {
+        setShufflingState()
+    }
+    
+    @IBAction func repeatClicked(_ sender: Any) {
+        setRepeatingState()
     }
 }
 

@@ -923,15 +923,20 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system" size="17"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="shuffleClicked:" target="XfG-lQ-9wD" id="6Va-1q-uyb"/>
+                                        </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oH-Z2-zno">
-                                        <rect key="frame" x="130" y="86.5" width="25" height="26"/>
+                                        <rect key="frame" x="130" y="87.5" width="25" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="repeat" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="uVd-Yo-3hh">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="systemSemibold" size="17"/>
+                                            <font key="font" metaFont="system" size="17"/>
                                         </buttonCell>
-                                        <color key="contentTintColor" red="0.62751275299999998" green="0.46000891919999998" blue="0.82922059299999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="repeatClicked:" target="XfG-lQ-9wD" id="Mzq-E7-hHw"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
