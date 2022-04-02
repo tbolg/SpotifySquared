@@ -1,61 +1,61 @@
 {
   "images" : [
     {
-      "filename" : "spotifySquaredIcon-9.png",
+      "filename" : "cd-9.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "spotifySquaredIcon-8.png",
+      "filename" : "cd-8.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "spotifySquaredIcon-7.png",
+      "filename" : "cd-7.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "spotifySquaredIcon-6.png",
+      "filename" : "cd-6.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "spotifySquaredIcon-5.png",
+      "filename" : "cd-5.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "spotifySquaredIcon-2.png",
+      "filename" : "cd-4.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "spotifySquaredIcon-1.png",
+      "filename" : "cd-3.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "spotifySquaredIcon.png",
+      "filename" : "cd-2.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "spotifySquaredIcon-3.png",
+      "filename" : "cd-1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "spotifySquaredIcon-4.png",
+      "filename" : "cd.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
