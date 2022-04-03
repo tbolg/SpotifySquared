@@ -114,15 +114,11 @@ class Spotify: NSObject {
         })
     }
     
-    func nextSong() {
+    func nextSong(completionHandler: @escaping () -> Void) {
         let script = """
         if application "Spotify" is running then
             tell application "Spotify"
-                if player state is playing then
-                    play (next track)
-                else
-                    return ""
-                end if
+            play (next track)
             end tell
         end if
         """
@@ -130,18 +126,15 @@ class Spotify: NSObject {
             if let err = err {
                 print(err)
             }
+            completionHandler()
         })
     }
     
-    func previousSong() {
+    func previousSong(completionHandler: @escaping () -> Void) {
         let script = """
         if application "Spotify" is running then
             tell application "Spotify"
-                if player state is playing then
-                    play (previous track)
-                else
-                    return ""
-                end if
+            play (previous track)
             end tell
         end if
         """
@@ -149,6 +142,7 @@ class Spotify: NSObject {
             if let err = err {
                 print(err)
             }
+            completionHandler()
         })
     }
     

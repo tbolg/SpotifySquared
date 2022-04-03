@@ -205,12 +205,11 @@ class ViewController: NSViewController {
     
     func updatePlayPauseButton() {
         Spotify.shared.isPlaying(completionHandler: { playing in
-            DispatchQueue.main.async() { [weak self] in
-                if (playing) {
-                    self?.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
-                } else {
-                    self?.playPauseButton.image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: "")
-                }
+            print(playing)
+            if (playing) {
+                self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+            } else {
+                self.playPauseButton.image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: "")
             }
         })
     }
@@ -346,11 +345,15 @@ class ViewController: NSViewController {
     }
     
     @IBAction func nextSongClicked(_ sender: Any) {
-        Spotify.shared.nextSong()
+        Spotify.shared.nextSong() {
+            self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+        }
     }
     
     @IBAction func previousSongClicked(_ sender: Any) {
-        Spotify.shared.previousSong()
+        Spotify.shared.previousSong() {
+            self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+        }
     }
     
     @IBAction func volumeSliderChanged(_ sender: NSSlider) {
