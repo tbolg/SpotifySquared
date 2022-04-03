@@ -38,6 +38,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var controlViewSongArtistAlbumLabel: NSTextField!
     @IBOutlet weak var volumeImageView: NSImageView!
     
+    var mouseIsInControlView: Bool = false
+    
     let tintColor = NSColor(calibratedRed: 160 / 255, green: 117 / 255, blue: 211 / 255, alpha: 1)
     
     override func viewDidLoad() {
@@ -101,10 +103,12 @@ class ViewController: NSViewController {
     }
     
     override func mouseEntered(with event: NSEvent) {
+        mouseIsInControlView = true
         showControlView()
     }
     
     override func mouseExited(with event: NSEvent) {
+        mouseIsInControlView = false
         hideControlView()
     }
     
@@ -195,11 +199,14 @@ class ViewController: NSViewController {
     
     func hideControlView() {
         NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.5
+            context.duration = 0.25
             self.controlView.animator().alphaValue = 0
         } completionHandler: {
             self.controlView.isHidden = true
             self.controlView.alphaValue = 1
+            if self.mouseIsInControlView {
+                self.showControlView()
+            }
         }
     }
     
