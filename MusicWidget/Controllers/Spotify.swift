@@ -347,6 +347,22 @@ class Spotify: NSObject {
         })
     }
     
+    func getSongUrl(completionHandler: @escaping (String) -> Void) {
+        let script = """
+        if application "Spotify" is running then
+            tell application "Spotify"
+                return spotify url of current track
+            end tell
+        end if
+        """
+        NSAppleScript.go(code: script, completionHandler: {_ , out, err in
+            if let err = err {
+                print(err)
+            }
+            completionHandler(out?.stringValue ?? "")
+        })
+    }
+    
 }
 
 

@@ -120,6 +120,12 @@ class ViewController: NSViewController {
         hideControlView()
     }
     
+    override func mouseUp(with event: NSEvent) {
+        if (event.clickCount == 2) {
+            self.openSongInSpotify()
+        }
+    }
+    
     @objc func checkForNewSong() {
         let currentSongName = Spotify.shared.getCurrentSongName()
         if (currentSongName != Spotify.shared.currentSong.name) {
@@ -142,6 +148,14 @@ class ViewController: NSViewController {
                 self.totalTimeLabel.stringValue = self.secondsToMinutes(seconds: Int(totalDuration))
             }
             
+        }
+    }
+    
+    func openSongInSpotify() {
+        Spotify.shared.getSongUrl { songUrl in
+            if let url = URL(string: songUrl) {
+                NSWorkspace.shared.open(url)
+            }
         }
     }
     
