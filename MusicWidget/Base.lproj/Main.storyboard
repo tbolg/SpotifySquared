@@ -81,7 +81,7 @@
         <scene sceneID="faK-6g-lHb">
             <objects>
                 <windowController id="R4r-nZ-7PT" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="AEM-f4-76w">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="AEM-f4-76w">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="451" y="353" width="225" height="221"/>
@@ -107,47 +107,101 @@
             <objects>
                 <viewController title="About SpotifySquared" id="bol-45-yWB" sceneMemberID="viewController">
                     <view key="view" id="uWL-AZ-CA4">
-                        <rect key="frame" x="0.0" y="0.0" width="266" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="266" height="233"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TbQ-hU-KxA">
-                                <rect key="frame" x="88" y="144" width="90" height="99"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="cd" id="7P5-3M-1TA"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FpR-Nj-2bY">
-                                <rect key="frame" x="36" y="120" width="195" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SpotifySquared" id="Wdk-JM-4gb">
-                                    <font key="font" metaFont="system" size="17"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqv-o5-oRI">
-                                <rect key="frame" x="-2" y="98" width="270" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="A Spotify widget inspired by Silicio" id="qtx-Z3-pHk">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Jq-c6-3Pg">
-                                <rect key="frame" x="-2" y="73" width="270" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="© Tomas Bolger, 2022" id="gm7-30-xgP">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWp-gB-bQu">
+                                <rect key="frame" x="-123" y="15" width="512" height="203"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ABH-YC-Q28">
+                                        <rect key="frame" x="0.0" y="56" width="512" height="147"/>
+                                        <subviews>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TbQ-hU-KxA">
+                                                <rect key="frame" x="0.0" y="48" width="512" height="99"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="99" id="rK7-ka-vX3"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="cd" id="7P5-3M-1TA"/>
+                                            </imageView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FpR-Nj-2bY">
+                                                <rect key="frame" x="193" y="24" width="126" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="r49-Nc-nOi"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SpotifySquared" id="Wdk-JM-4gb">
+                                                    <font key="font" metaFont="system" size="17"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Jq-c6-3Pg">
+                                                <rect key="frame" x="219" y="0.0" width="74" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="cg0-9K-B5b"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Version 1.0" id="gm7-30-xgP">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mqv-o5-oRI">
+                                        <rect key="frame" x="147" y="32" width="218" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="vdn-9f-8Qm"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="A Spotify widget inspired by Silicio" id="qtx-Z3-pHk">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O8J-yc-wvx">
+                                        <rect key="frame" x="148" y="0.0" width="216" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="ZZP-fd-TZI"/>
+                                            <constraint firstAttribute="width" constant="212" id="yip-AW-FtG"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" alignment="center" title="Copyrtight © 2022 Tomas Bolger. All rights reserved." id="FxV-Ui-GlN">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="qWp-gB-bQu" firstAttribute="centerX" secondItem="uWL-AZ-CA4" secondAttribute="centerX" id="aCg-5Y-95o"/>
+                            <constraint firstItem="qWp-gB-bQu" firstAttribute="centerY" secondItem="uWL-AZ-CA4" secondAttribute="centerY" id="dWr-6m-QnH"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="ldY-9K-6mk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="655"/>
+            <point key="canvasLocation" x="400" y="663.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -176,7 +230,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="kgW-rk-Vdu"/>
                                                 </constraints>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Luv" id="bJ9-fk-6ai">
+                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" title="Luv" id="bJ9-fk-6ai">
                                                     <font key="font" metaFont="systemSemibold" size="11"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -329,9 +383,9 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="volume.1.fill" catalog="system" id="4Qs-F1-4Jl"/>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rav-lc-Zzy">
-                                        <rect key="frame" x="-2" y="160" width="254" height="16"/>
+                                        <rect key="frame" x="10" y="160" width="232" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Luv" id="Mx8-ZI-qU6">
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" title="Luv" id="Mx8-ZI-qU6">
                                             <font key="font" metaFont="systemSemibold" size="13"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
