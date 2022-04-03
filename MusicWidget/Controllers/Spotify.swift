@@ -48,11 +48,7 @@ class Spotify: NSObject {
         let script =  """
             if application "Spotify" is running then
                 tell application "Spotify"
-                    if player state is playing then
-                        return name of current track
-                    else
-                        return ""
-                end if
+                return name of current track
                 end tell
             else
                 return ""
@@ -62,7 +58,6 @@ class Spotify: NSObject {
             if let err = err {
                 print(err)
             }
-            
             self.currentSong.name = out?.stringValue ?? ""
         })
     }
@@ -71,11 +66,7 @@ class Spotify: NSObject {
         let script =  """
             if application "Spotify" is running then
                 tell application "Spotify"
-                    if player state is playing then
-                        return name of current track
-                    else
-                        return name of current track
-                end if
+                return name of current track
                 end tell
             else
                 return ""
@@ -223,11 +214,7 @@ class Spotify: NSObject {
         let script = """
         if application "Spotify" is running then
             tell application "Spotify"
-                if player state is playing then
-                    return (duration of current track) / 1000
-                else
-                    return ""
-                end if
+            return (duration of current track) / 1000
             end tell
         end if
         """
@@ -245,11 +232,7 @@ class Spotify: NSObject {
         let script = """
         if application "Spotify" is running then
             tell application "Spotify"
-                if player state is playing then
-                    return player position
-                else
-                    return ""
-                end if
+            return player position
             end tell
         end if
         """
