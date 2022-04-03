@@ -74,7 +74,7 @@ class Spotify: NSObject {
                     if player state is playing then
                         return name of current track
                     else
-                        return ""
+                        return name of current track
                 end if
                 end tell
             else
@@ -161,7 +161,7 @@ class Spotify: NSObject {
         })
     }
     
-    func playOrPause() {
+    func playOrPause(completionHandler: @escaping (String) -> Void) {
         let script = """
         if application "Spotify" is running then
             tell application "Spotify" to set spotifyState to (player state as text)
@@ -170,12 +170,14 @@ class Spotify: NSObject {
             else
                 tell application "Spotify" to play
             end if
+            return spotifyState
         end if
         """
         NSAppleScript.go(code: script, completionHandler: {_ , out, err in
             if let err = err {
                 print(err)
             }
+            completionHandler(out?.stringValue ?? "")
         })
     }
     

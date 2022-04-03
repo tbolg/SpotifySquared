@@ -13,6 +13,9 @@ import AudioToolbox
 
 class ViewController: NSViewController {
     
+    // TODO: SHOW ON EVERY PAGE
+    // TODO: DOUBLE CLICK TO SHOW SONG ON SPOTIFY
+    
     @IBOutlet weak var albumArtworkImageView: NSImageView!
     @IBOutlet weak var songLabelView: NSVisualEffectView!
     @IBOutlet weak var songNameLabel: NSTextField!
@@ -142,7 +145,6 @@ class ViewController: NSViewController {
     }
     
     func reloadView() {
-        self.updatePlayPauseButton()
         self.setAlbumArtwork()
         self.setSongLabels()
     }
@@ -333,8 +335,14 @@ class ViewController: NSViewController {
     }
     
     @IBAction func playPauseClicked(_ sender: Any) {
-        Spotify.shared.playOrPause()
-        self.updatePlayPauseButton()
+        Spotify.shared.playOrPause() { playerState in
+            if (playerState == "playing") {
+                self.playPauseButton.image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: "")
+            } else {
+                self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+            }
+        }
+        
     }
     
     @IBAction func nextSongClicked(_ sender: Any) {
