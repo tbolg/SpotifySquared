@@ -37,10 +37,13 @@ class ViewController: NSViewController {
     @IBOutlet weak var controlViewSongNameLabel: NSTextField!
     @IBOutlet weak var controlViewSongArtistAlbumLabel: NSTextField!
     @IBOutlet weak var volumeImageView: NSImageView!
+    @IBOutlet weak var muteButton: NSButton!
     
     var mouseIsInControlView: Bool = false
+    var lastVolume: Float = 0
+    var isMuted: Bool = false
     
-    let tintColor = NSColor(calibratedRed: 160 / 255, green: 117 / 255, blue: 211 / 255, alpha: 1)
+    let spotifyGreenColor = NSColor(calibratedRed: 101 / 255, green: 212 / 255, blue: 110 / 255, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +77,12 @@ class ViewController: NSViewController {
         let currentVolumeInteger = Int(self.getVolume() * 100)
         self.volumeSlider.integerValue = currentVolumeInteger
         self.setVolumeImageView(volumeLevel: currentVolumeInteger)
+        self.lastVolume = getVolume()
+        if (self.lastVolume == 0) {
+            self.isMuted = true
+        } else {
+            self.isMuted = false
+        }
         
         // Time slider
         self.timeSlider.wantsLayer = true
@@ -85,7 +94,7 @@ class ViewController: NSViewController {
         // Shuffle button
         Spotify.shared.isShuffling { shuffling in
             if (shuffling) {
-                self.shuffleButton.contentTintColor = self.tintColor
+                self.shuffleButton.contentTintColor = self.spotifyGreenColor
             } else {
                 self.shuffleButton.contentTintColor = .secondaryLabelColor
             }
@@ -94,12 +103,11 @@ class ViewController: NSViewController {
         // Repeat button
         Spotify.shared.isRepeating { repeating in
             if (repeating) {
-                self.repeatButton.contentTintColor = self.tintColor
+                self.repeatButton.contentTintColor = self.spotifyGreenColor
             } else {
                 self.repeatButton.contentTintColor = .secondaryLabelColor
             }
         }
-        
     }
     
     override func mouseEntered(with event: NSEvent) {
@@ -324,7 +332,7 @@ class ViewController: NSViewController {
                 return
             }
             Spotify.shared.setShuffling(shuffling: true)
-            self.shuffleButton.contentTintColor = self.tintColor
+            self.shuffleButton.contentTintColor = self.spotifyGreenColor
         }
     }
     
@@ -336,7 +344,7 @@ class ViewController: NSViewController {
                 return
             }
             Spotify.shared.setRepeating(repeating: true)
-            self.repeatButton.contentTintColor = self.tintColor
+            self.repeatButton.contentTintColor = self.spotifyGreenColor
         }
     }
     
@@ -375,10 +383,21 @@ class ViewController: NSViewController {
     }
     
     @IBAction func muteClicked(_ sender: Any) {
-        self.volumeSlider.integerValue = 0
-        self.setVolume(level: 0)
-        self.setVolumeImageView(volumeLevel: 0)
-        // TODO: On click to unmute, set to last volume
+        if (self.isMuted) {
+            self.isMuted = false
+            self.setVolume(level: lastVolume)
+            let lastVolumeInt = Int(self.lastVolume * 100)
+            self.volumeSlider.integerValue = lastVolumeInt
+            self.setVolumeImageView(volumeLevel: lastVolumeInt)
+            self.muteButton.contentTintColor = .secondaryLabelColor
+        } else {
+            self.lastVolume = self.getVolume()
+            self.isMuted = true
+            self.volumeSlider.integerValue = 0
+            self.setVolume(level: 0)
+            self.setVolumeImageView(volumeLevel: 0)
+            self.muteButton.contentTintColor = self.spotifyGreenColor
+        }
     }
     
     @IBAction func exitClicked(_ sender: Any) {

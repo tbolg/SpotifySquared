@@ -415,6 +415,7 @@
                         <outlet property="controlViewSongNameLabel" destination="rav-lc-Zzy" id="nHh-zR-OQZ"/>
                         <outlet property="exitButton" destination="jWB-Nl-o9d" id="fTh-JD-2ZD"/>
                         <outlet property="likeButton" destination="Umk-lM-4O9" id="Hdk-4X-Vsp"/>
+                        <outlet property="muteButton" destination="Umk-lM-4O9" id="aOl-jz-twp"/>
                         <outlet property="nextButton" destination="aeK-w1-heN" id="VuY-M4-4Kg"/>
                         <outlet property="playPauseButton" destination="5jP-wD-9u0" id="nkv-mH-gbw"/>
                         <outlet property="previousButton" destination="hOl-oB-NE1" id="4iY-fC-0qp"/>
