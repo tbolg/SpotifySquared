@@ -1,6 +1,6 @@
 //
 //  SpotifyWindowController.swift
-//  MusicWidget
+//  SpotifySquared
 //
 //  Created by Tomas Bolger on 29/3/2022.
 //

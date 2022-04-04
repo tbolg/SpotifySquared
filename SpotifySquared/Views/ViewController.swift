@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  MusicWidget
+//  SpotifySquared
 //
 //  Created by Tomas Bolger on 27/3/2022.
 //

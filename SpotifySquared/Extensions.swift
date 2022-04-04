@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  MusicWidget
+//  SpotifySquared
 //
 //  Created by Tomas Bolger on 2/4/2022.
 //
