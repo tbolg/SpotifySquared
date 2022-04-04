@@ -174,7 +174,7 @@
                                             <constraint firstAttribute="height" constant="32" id="ZZP-fd-TZI"/>
                                             <constraint firstAttribute="width" constant="212" id="yip-AW-FtG"/>
                                         </constraints>
-                                        <textFieldCell key="cell" alignment="center" title="Copyrtight © 2022 Tomas Bolger. All rights reserved." id="FxV-Ui-GlN">
+                                        <textFieldCell key="cell" alignment="center" title="Copyright © 2022 Tomas Bolger. All rights reserved." id="FxV-Ui-GlN">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -392,16 +392,16 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lA4-3i-tC0">
-                                        <rect key="frame" x="-2" y="144" width="254" height="14"/>
+                                        <rect key="frame" x="13" y="144" width="229" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Nujabes" id="NKT-hj-Kqz">
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" title="Nujabes" id="NKT-hj-Kqz">
                                             <font key="font" metaFont="systemSemibold" size="11"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tW0-cG-pQf">
-                                        <rect key="frame" x="212" y="60" width="30" height="13"/>
+                                        <rect key="frame" x="212" y="59" width="30" height="13"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="12:13" id="8rB-Hk-lap">
                                             <font key="font" metaFont="system" size="10"/>
@@ -410,7 +410,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9z-is-dL6">
-                                        <rect key="frame" x="13" y="60" width="27" height="13"/>
+                                        <rect key="frame" x="13" y="59" width="27" height="13"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="0:54" id="KQp-KX-epo">
                                             <font key="font" metaFont="system" size="10"/>

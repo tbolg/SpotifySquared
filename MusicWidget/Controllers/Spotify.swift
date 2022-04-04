@@ -192,9 +192,7 @@ class Spotify: NSObject {
     func scrubSong(position: Double) {
         let script = """
         tell application "Spotify"
-            if player state is playing then
-                set player position to "\(position)"
-            end if
+        set player position to "\(position)"
         end tell
         """
         NSAppleScript.go(code: script, completionHandler: {_ , out, err in
