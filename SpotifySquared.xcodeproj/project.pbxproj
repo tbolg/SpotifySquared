@@ -80,6 +80,7 @@
 		D8C0737527F06451006F70F1 /* SpotifySquared */ = {
 			isa = PBXGroup;
 			children = (
+				D8E2BB2C27FEFD8D001A8750 /* New Group */,
 				D8341FC427F1E2CA002AC299 /* Models */,
 				D8C0738927F068FB006F70F1 /* Info.plist */,
 				D8C0738627F06518006F70F1 /* Controllers */,
@@ -100,6 +101,13 @@
 				D8341FC027F1E183002AC299 /* Spotify.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D8E2BB2C27FEFD8D001A8750 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

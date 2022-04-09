@@ -409,12 +409,12 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9z-is-dL6">
+                                    <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9z-is-dL6">
                                         <rect key="frame" x="13" y="59" width="27" height="13"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="0:54" id="KQp-KX-epo">
                                             <font key="font" metaFont="system" size="10"/>
-                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
@@ -468,7 +468,6 @@
                         <outlet property="controlViewSongArtistAlbumLabel" destination="lA4-3i-tC0" id="zRR-sv-qDC"/>
                         <outlet property="controlViewSongNameLabel" destination="rav-lc-Zzy" id="nHh-zR-OQZ"/>
                         <outlet property="exitButton" destination="jWB-Nl-o9d" id="fTh-JD-2ZD"/>
-                        <outlet property="likeButton" destination="Umk-lM-4O9" id="Hdk-4X-Vsp"/>
                         <outlet property="muteButton" destination="Umk-lM-4O9" id="aOl-jz-twp"/>
                         <outlet property="nextButton" destination="aeK-w1-heN" id="VuY-M4-4Kg"/>
                         <outlet property="playPauseButton" destination="5jP-wD-9u0" id="nkv-mH-gbw"/>
@@ -476,6 +475,8 @@
                         <outlet property="repeatButton" destination="1oH-Z2-zno" id="Mgb-Ab-nhL"/>
                         <outlet property="settingsButton" destination="nZG-RS-Yoz" id="Baw-w4-FwI"/>
                         <outlet property="shuffleButton" destination="qKz-Z2-qyE" id="CF8-Ns-EaZ"/>
+                        <outlet property="skipBackButton" destination="iPx-2a-jtV" id="aIM-py-qAh"/>
+                        <outlet property="skipForwardButton" destination="oNl-yc-HYL" id="K99-NK-VWC"/>
                         <outlet property="songArtistLabel" destination="tKd-VU-Zwa" id="Orm-wh-ad2"/>
                         <outlet property="songLabelView" destination="QYx-Dj-706" id="0Nj-wF-x8I"/>
                         <outlet property="songNameLabel" destination="lD7-Z5-jNG" id="maZ-zt-IgY"/>

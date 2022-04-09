@@ -28,8 +28,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var repeatButton: NSButton!
     @IBOutlet weak var shuffleButton: NSButton!
     @IBOutlet weak var exitButton: NSButton!
-    @IBOutlet weak var likeButton: NSButton!
     @IBOutlet weak var settingsButton: NSButton!
+    @IBOutlet weak var muteButton: NSButton!
+    @IBOutlet weak var skipForwardButton: NSButton!
+    @IBOutlet weak var skipBackButton: NSButton!
     @IBOutlet weak var volumeSlider: NSSlider!
     @IBOutlet weak var timeSlider: NSSlider!
     @IBOutlet weak var totalTimeLabel: NSTextField!
@@ -37,7 +39,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var controlViewSongNameLabel: NSTextField!
     @IBOutlet weak var controlViewSongArtistAlbumLabel: NSTextField!
     @IBOutlet weak var volumeImageView: NSImageView!
-    @IBOutlet weak var muteButton: NSButton!
     
     var mouseIsInControlView: Bool = false
     var lastVolume: Float = 0
@@ -47,6 +48,18 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Configure buttons
+        self.playPauseButton.showsBorderOnlyWhileMouseInside = true
+        self.nextButton.showsBorderOnlyWhileMouseInside = true
+        self.previousButton.showsBorderOnlyWhileMouseInside = true
+        self.repeatButton.showsBorderOnlyWhileMouseInside = true
+        self.shuffleButton.showsBorderOnlyWhileMouseInside = true
+        self.exitButton.showsBorderOnlyWhileMouseInside = true
+        self.settingsButton.showsBorderOnlyWhileMouseInside = true
+        self.muteButton.showsBorderOnlyWhileMouseInside = true
+        self.skipBackButton.showsBorderOnlyWhileMouseInside = true
+        self.skipForwardButton.showsBorderOnlyWhileMouseInside = true
         
         // Configure views
         albumArtworkImageView.imageScaling = .scaleAxesIndependently
@@ -77,6 +90,7 @@ class ViewController: NSViewController {
         let currentVolumeInteger = Int(self.getVolume() * 100)
         self.volumeSlider.integerValue = currentVolumeInteger
         self.setVolumeImageView(volumeLevel: currentVolumeInteger)
+        self.volumeSlider.trackFillColor = spotifyGreenColor
         self.lastVolume = getVolume()
         if (self.lastVolume == 0) {
             self.isMuted = true
@@ -108,6 +122,10 @@ class ViewController: NSViewController {
                 self.repeatButton.contentTintColor = .secondaryLabelColor
             }
         }
+        
+        // State changes to poll for
+        var _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(pollForChanges), userInfo: nil, repeats: true)
+        
     }
     
     override func mouseEntered(with event: NSEvent) {
@@ -149,6 +167,12 @@ class ViewController: NSViewController {
             }
             
         }
+    }
+    
+    @objc func pollForChanges() {
+        updatePlayPauseButton()
+        updateRepeatingButton()
+        updateShufflingButton()
     }
     
     func openSongInSpotify() {
@@ -350,6 +374,16 @@ class ViewController: NSViewController {
         }
     }
     
+    func updateShufflingButton() {
+        Spotify.shared.isShuffling { shuffling in
+            if (shuffling) {
+                self.shuffleButton.contentTintColor = self.spotifyGreenColor
+                return
+            }
+            self.shuffleButton.contentTintColor = .secondaryLabelColor
+        }
+    }
+    
     func setRepeatingState() {
         Spotify.shared.isRepeating { repeating in
             if (repeating) {
@@ -359,6 +393,17 @@ class ViewController: NSViewController {
             }
             Spotify.shared.setRepeating(repeating: true)
             self.repeatButton.contentTintColor = self.spotifyGreenColor
+        }
+    }
+    
+    func updateRepeatingButton() {
+        Spotify.shared.isRepeating { repeating in
+            if (repeating) {
+                self.repeatButton.contentTintColor = self.spotifyGreenColor
+                return
+            }
+            self.repeatButton.contentTintColor = .secondaryLabelColor
+            
         }
     }
     
