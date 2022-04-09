@@ -206,6 +206,11 @@ class ViewController: NSViewController {
         self.controlViewSongNameLabel.stringValue = Spotify.shared.currentSong.name
         self.songArtistLabel.stringValue = Spotify.shared.currentSong.artist
         self.controlViewSongArtistAlbumLabel.stringValue = "\(Spotify.shared.currentSong.artist) - \(Spotify.shared.currentSong.album)"
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        guard let button = appDelegate.statusItem.button else {
+            return
+        }
+        button.title = "\(Spotify.shared.currentSong.name) - \(Spotify.shared.currentSong.artist)"
         
     }
     
