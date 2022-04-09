@@ -359,6 +359,9 @@
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="gearshape.fill" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="izw-i9-3u0">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <connections>
+                                                <action selector="settingsButtonClicked:" target="XfG-lQ-9wD" id="1ny-mC-tI8"/>
+                                            </connections>
                                         </buttonCell>
                                     </button>
                                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Dv-FJ-nVW">
@@ -474,6 +477,7 @@
                         <outlet property="previousButton" destination="hOl-oB-NE1" id="4iY-fC-0qp"/>
                         <outlet property="repeatButton" destination="1oH-Z2-zno" id="Mgb-Ab-nhL"/>
                         <outlet property="settingsButton" destination="nZG-RS-Yoz" id="Baw-w4-FwI"/>
+                        <outlet property="settingsMenu" destination="ENF-l9-7dk" id="YXy-2c-MeB"/>
                         <outlet property="shuffleButton" destination="qKz-Z2-qyE" id="CF8-Ns-EaZ"/>
                         <outlet property="skipBackButton" destination="iPx-2a-jtV" id="aIM-py-qAh"/>
                         <outlet property="skipForwardButton" destination="oNl-yc-HYL" id="K99-NK-VWC"/>
@@ -488,10 +492,36 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="ENF-l9-7dk">
+                    <items>
+                        <menuItem title="Preferences" id="u27-5w-SWJ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="preferencesClicked:" target="XfG-lQ-9wD" id="BUr-mb-jc6"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="pB2-y0-Ees"/>
+                        <menuItem title="About SpotifySquared" id="NMe-E7-cIY">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="R4r-nZ-7PT" kind="show" id="iJg-7P-FPf"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Quit SpotifySquared" id="qbH-xN-6z8">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="exitClicked:" target="XfG-lQ-9wD" id="dow-Iy-gix"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="iJg-7P-FPf"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="NSTouchBarAudioOutputMuteTemplate" width="13" height="15"/>
         <image name="NSTouchBarSkipAhead15SecondsTemplate" width="15" height="17"/>

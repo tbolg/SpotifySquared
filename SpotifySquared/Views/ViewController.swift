@@ -39,12 +39,14 @@ class ViewController: NSViewController {
     @IBOutlet weak var controlViewSongNameLabel: NSTextField!
     @IBOutlet weak var controlViewSongArtistAlbumLabel: NSTextField!
     @IBOutlet weak var volumeImageView: NSImageView!
+    @IBOutlet var settingsMenu: NSMenu!
+    
     
     var mouseIsInControlView: Bool = false
     var lastVolume: Float = 0
     var isMuted: Bool = false
     
-    let spotifyGreenColor = NSColor(calibratedRed: 101 / 255, green: 212 / 255, blue: 110 / 255, alpha: 1)
+    let tintColor = NSColor(calibratedRed: 160 / 255, green: 117 / 255, blue: 211 / 255, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +92,7 @@ class ViewController: NSViewController {
         let currentVolumeInteger = Int(self.getVolume() * 100)
         self.volumeSlider.integerValue = currentVolumeInteger
         self.setVolumeImageView(volumeLevel: currentVolumeInteger)
-        self.volumeSlider.trackFillColor = spotifyGreenColor
+        self.volumeSlider.trackFillColor = tintColor
         self.lastVolume = getVolume()
         if (self.lastVolume == 0) {
             self.isMuted = true
@@ -108,7 +110,7 @@ class ViewController: NSViewController {
         // Shuffle button
         Spotify.shared.isShuffling { shuffling in
             if (shuffling) {
-                self.shuffleButton.contentTintColor = self.spotifyGreenColor
+                self.shuffleButton.contentTintColor = self.tintColor
             } else {
                 self.shuffleButton.contentTintColor = .secondaryLabelColor
             }
@@ -117,7 +119,7 @@ class ViewController: NSViewController {
         // Repeat button
         Spotify.shared.isRepeating { repeating in
             if (repeating) {
-                self.repeatButton.contentTintColor = self.spotifyGreenColor
+                self.repeatButton.contentTintColor = self.tintColor
             } else {
                 self.repeatButton.contentTintColor = .secondaryLabelColor
             }
@@ -370,14 +372,14 @@ class ViewController: NSViewController {
                 return
             }
             Spotify.shared.setShuffling(shuffling: true)
-            self.shuffleButton.contentTintColor = self.spotifyGreenColor
+            self.shuffleButton.contentTintColor = self.tintColor
         }
     }
     
     func updateShufflingButton() {
         Spotify.shared.isShuffling { shuffling in
             if (shuffling) {
-                self.shuffleButton.contentTintColor = self.spotifyGreenColor
+                self.shuffleButton.contentTintColor = self.tintColor
                 return
             }
             self.shuffleButton.contentTintColor = .secondaryLabelColor
@@ -392,14 +394,14 @@ class ViewController: NSViewController {
                 return
             }
             Spotify.shared.setRepeating(repeating: true)
-            self.repeatButton.contentTintColor = self.spotifyGreenColor
+            self.repeatButton.contentTintColor = self.tintColor
         }
     }
     
     func updateRepeatingButton() {
         Spotify.shared.isRepeating { repeating in
             if (repeating) {
-                self.repeatButton.contentTintColor = self.spotifyGreenColor
+                self.repeatButton.contentTintColor = self.tintColor
                 return
             }
             self.repeatButton.contentTintColor = .secondaryLabelColor
@@ -455,7 +457,7 @@ class ViewController: NSViewController {
             self.volumeSlider.integerValue = 0
             self.setVolume(level: 0)
             self.setVolumeImageView(volumeLevel: 0)
-            self.muteButton.contentTintColor = self.spotifyGreenColor
+            self.muteButton.contentTintColor = self.tintColor
         }
     }
     
@@ -480,5 +482,14 @@ class ViewController: NSViewController {
     @IBAction func repeatClicked(_ sender: Any) {
         setRepeatingState()
     }
+    
+    @IBAction func settingsButtonClicked(_ sender: NSButtonCell) {
+        settingsMenu.popUp(positioning: settingsMenu.item(at: 0), at: NSEvent.mouseLocation, in: nil)
+    }
+    
+    @IBAction func preferencesClicked(_ sender: Any) {
+        
+    }
+    
 }
 
