@@ -574,7 +574,7 @@
                             <visualEffectView blendingMode="withinWindow" material="dark" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="ayF-8p-xfb">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                 <subviews>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5jP-wD-9u0">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5jP-wD-9u0" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="113" y="110" width="25" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="play.fill" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="75d-mY-DNJ">
@@ -585,7 +585,7 @@
                                             <action selector="playPauseClicked:" target="XfG-lQ-9wD" id="S3X-bu-6Jw"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-w1-heN">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-w1-heN" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="146" y="111" width="25" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarSkipToEndTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="m0b-v1-O9m">
@@ -596,7 +596,7 @@
                                             <action selector="nextSongClicked:" target="XfG-lQ-9wD" id="Z38-Dc-nBi"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNl-yc-HYL">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNl-yc-HYL" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="179" y="108.5" width="25" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarSkipAhead15SecondsTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="nms-ha-DRv">
@@ -607,7 +607,7 @@
                                             <action selector="skipForwardClicked:" target="XfG-lQ-9wD" id="UcP-7O-fMa"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPx-2a-jtV">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPx-2a-jtV" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="47" y="108.5" width="25" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarSkipBack15SecondsTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="Rov-sA-KfZ">
@@ -618,7 +618,7 @@
                                             <action selector="skipBackClicked:" target="XfG-lQ-9wD" id="hmg-7k-uSK"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-oB-NE1">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-oB-NE1" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="80" y="112" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarSkipToStartTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="x8L-NN-2ZI">
@@ -629,7 +629,7 @@
                                             <action selector="previousSongClicked:" target="XfG-lQ-9wD" id="3BQ-of-UMi"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jWB-Nl-o9d">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jWB-Nl-o9d" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="220" width="27" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="27" id="E8d-vO-0cx"/>
@@ -654,7 +654,7 @@
                                             <action selector="muteClicked:" target="XfG-lQ-9wD" id="y6i-db-G5m"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nZG-RS-Yoz">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nZG-RS-Yoz" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="223" y="220" width="27.5" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27" id="Ha3-lQ-8bL"/>
@@ -668,7 +668,7 @@
                                             </connections>
                                         </buttonCell>
                                     </button>
-                                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Dv-FJ-nVW">
+                                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Dv-FJ-nVW" customClass="HoverSlider" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="41" y="14" width="167" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="52.22902097902098" tickMarkPosition="above" sliderType="linear" id="OTI-6A-NFu"/>
@@ -676,7 +676,7 @@
                                             <action selector="volumeSliderChanged:" target="XfG-lQ-9wD" id="no7-f9-Pn4"/>
                                         </connections>
                                     </slider>
-                                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gig-h6-7OR">
+                                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gig-h6-7OR" customClass="HoverSlider" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="41" y="50" width="167" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="49.952713815789473" tickMarkPosition="above" sliderType="linear" id="yRv-4Z-gN4"/>
@@ -725,7 +725,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qKz-Z2-qyE">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qKz-Z2-qyE" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="97" y="86.5" width="25.5" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="shuffle" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="qCX-eH-vaW">
@@ -736,7 +736,7 @@
                                             <action selector="shuffleClicked:" target="XfG-lQ-9wD" id="6Va-1q-uyb"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oH-Z2-zno">
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oH-Z2-zno" customClass="HoverButton" customModule="SpotifySquared" customModuleProvider="target">
                                         <rect key="frame" x="130" y="87.5" width="25" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="repeat" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="uVd-Yo-3hh">

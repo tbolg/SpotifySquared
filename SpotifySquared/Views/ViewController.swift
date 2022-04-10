@@ -51,27 +51,11 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Configure buttons
-        self.playPauseButton.showsBorderOnlyWhileMouseInside = true
-        self.nextButton.showsBorderOnlyWhileMouseInside = true
-        self.previousButton.showsBorderOnlyWhileMouseInside = true
-        self.repeatButton.showsBorderOnlyWhileMouseInside = true
-        self.shuffleButton.showsBorderOnlyWhileMouseInside = true
-        self.exitButton.showsBorderOnlyWhileMouseInside = true
-        self.settingsButton.showsBorderOnlyWhileMouseInside = true
-        self.muteButton.showsBorderOnlyWhileMouseInside = true
-        self.skipBackButton.showsBorderOnlyWhileMouseInside = true
-        self.skipForwardButton.showsBorderOnlyWhileMouseInside = true
-        
         // Configure views
         albumArtworkImageView.imageScaling = .scaleAxesIndependently
         songLabelView.wantsLayer = true
         songLabelView.layer?.cornerRadius = 10
         controlView.alphaValue = 0
-        
-        // Configure sliders
-        self.timeSlider.controlSize = .mini
-        self.volumeSlider.controlSize = .mini
         
         // Load song data
         Spotify.shared.updateSongData()
@@ -88,12 +72,11 @@ class ViewController: NSViewController {
         self.updatePlayPauseButton()
         
         // Volume slider
-        self.volumeSlider.isContinuous = true
         let currentVolumeInteger = Int(self.getVolume() * 100)
         self.volumeSlider.integerValue = currentVolumeInteger
         self.setVolumeImageView(volumeLevel: currentVolumeInteger)
-        self.volumeSlider.trackFillColor = tintColor
         self.lastVolume = getVolume()
+        self.volumeSlider.controlSize = .mini
         if (self.lastVolume == 0) {
             self.isMuted = true
         } else {
@@ -101,9 +84,6 @@ class ViewController: NSViewController {
         }
         
         // Time slider
-        self.timeSlider.wantsLayer = true
-        self.timeSlider.trackFillColor = .white
-        self.timeSlider.isContinuous = true
         self.updateTimeSlider()
         var _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeSlider), userInfo: nil, repeats: true)
         

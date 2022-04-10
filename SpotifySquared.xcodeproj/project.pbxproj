@@ -11,6 +11,8 @@
 		D8341FC327F1E2C7002AC299 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8341FC227F1E2C7002AC299 /* Song.swift */; };
 		D864CF8F280291E600FD1EAF /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864CF8E280291E600FD1EAF /* StatusBarController.swift */; };
 		D864CF932802956F00FD1EAF /* MenuBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864CF922802956F00FD1EAF /* MenuBarViewController.swift */; };
+		D864CF9628029C6300FD1EAF /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864CF9528029C6200FD1EAF /* HoverButton.swift */; };
+		D864CF9828029D3E00FD1EAF /* HoverSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864CF9728029D3E00FD1EAF /* HoverSlider.swift */; };
 		D8AB553027F1F20200B7EC39 /* SpotifyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */; };
 		D8AB553227F1F72500B7EC39 /* WindowDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB553127F1F72500B7EC39 /* WindowDragView.swift */; };
 		D8AB553527F808F200B7EC39 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB553427F808F200B7EC39 /* Extensions.swift */; };
@@ -25,6 +27,8 @@
 		D8341FC227F1E2C7002AC299 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D864CF8E280291E600FD1EAF /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		D864CF922802956F00FD1EAF /* MenuBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarViewController.swift; sourceTree = "<group>"; };
+		D864CF9528029C6200FD1EAF /* HoverButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
+		D864CF9728029D3E00FD1EAF /* HoverSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverSlider.swift; sourceTree = "<group>"; };
 		D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyWindowController.swift; sourceTree = "<group>"; };
 		D8AB553127F1F72500B7EC39 /* WindowDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDragView.swift; sourceTree = "<group>"; };
 		D8AB553427F808F200B7EC39 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -56,6 +60,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D864CF9428029C5100FD1EAF /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				D864CF9528029C6200FD1EAF /* HoverButton.swift */,
+				D864CF9728029D3E00FD1EAF /* HoverSlider.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
 		D8AB553327F322BD00B7EC39 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +98,7 @@
 		D8C0737527F06451006F70F1 /* SpotifySquared */ = {
 			isa = PBXGroup;
 			children = (
+				D864CF9428029C5100FD1EAF /* Objects */,
 				D8E2BB2C27FEFD8D001A8750 /* New Group */,
 				D8341FC427F1E2CA002AC299 /* Models */,
 				D8C0738927F068FB006F70F1 /* Info.plist */,
@@ -194,6 +208,8 @@
 				D864CF932802956F00FD1EAF /* MenuBarViewController.swift in Sources */,
 				D8C0737927F06451006F70F1 /* ViewController.swift in Sources */,
 				D8C0737727F06451006F70F1 /* AppDelegate.swift in Sources */,
+				D864CF9628029C6300FD1EAF /* HoverButton.swift in Sources */,
+				D864CF9828029D3E00FD1EAF /* HoverSlider.swift in Sources */,
 				D8AB553527F808F200B7EC39 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
