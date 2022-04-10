@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D8341FC127F1E183002AC299 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8341FC027F1E183002AC299 /* Spotify.swift */; };
 		D8341FC327F1E2C7002AC299 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8341FC227F1E2C7002AC299 /* Song.swift */; };
+		D864CF8F280291E600FD1EAF /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864CF8E280291E600FD1EAF /* StatusBarController.swift */; };
+		D864CF932802956F00FD1EAF /* MenuBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D864CF922802956F00FD1EAF /* MenuBarViewController.swift */; };
 		D8AB553027F1F20200B7EC39 /* SpotifyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */; };
 		D8AB553227F1F72500B7EC39 /* WindowDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB553127F1F72500B7EC39 /* WindowDragView.swift */; };
 		D8AB553527F808F200B7EC39 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB553427F808F200B7EC39 /* Extensions.swift */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		D8341FC027F1E183002AC299 /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		D8341FC227F1E2C7002AC299 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		D864CF8E280291E600FD1EAF /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		D864CF922802956F00FD1EAF /* MenuBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarViewController.swift; sourceTree = "<group>"; };
 		D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyWindowController.swift; sourceTree = "<group>"; };
 		D8AB553127F1F72500B7EC39 /* WindowDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDragView.swift; sourceTree = "<group>"; };
 		D8AB553427F808F200B7EC39 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -56,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				D8C0737827F06451006F70F1 /* ViewController.swift */,
+				D864CF922802956F00FD1EAF /* MenuBarViewController.swift */,
 				D8AB553127F1F72500B7EC39 /* WindowDragView.swift */,
 			);
 			path = Views;
@@ -99,6 +104,7 @@
 			children = (
 				D8AB552F27F1F20200B7EC39 /* SpotifyWindowController.swift */,
 				D8341FC027F1E183002AC299 /* Spotify.swift */,
+				D864CF8E280291E600FD1EAF /* StatusBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -181,9 +187,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8AB553227F1F72500B7EC39 /* WindowDragView.swift in Sources */,
+				D864CF8F280291E600FD1EAF /* StatusBarController.swift in Sources */,
 				D8341FC327F1E2C7002AC299 /* Song.swift in Sources */,
 				D8AB553027F1F20200B7EC39 /* SpotifyWindowController.swift in Sources */,
 				D8341FC127F1E183002AC299 /* Spotify.swift in Sources */,
+				D864CF932802956F00FD1EAF /* MenuBarViewController.swift in Sources */,
 				D8C0737927F06451006F70F1 /* ViewController.swift in Sources */,
 				D8C0737727F06451006F70F1 /* AppDelegate.swift in Sources */,
 				D8AB553527F808F200B7EC39 /* Extensions.swift in Sources */,

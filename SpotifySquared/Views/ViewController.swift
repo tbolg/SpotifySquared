@@ -150,7 +150,12 @@ class ViewController: NSViewController {
         let currentSongName = Spotify.shared.getCurrentSongName()
         if (currentSongName != Spotify.shared.currentSong.name) {
             Spotify.shared.updateSongData()
+            if (currentSongName == "") {
+                self.loadNoSongPlayingView()
+            }
             self.reloadView()
+            
+            
         }
     }
     
@@ -175,6 +180,15 @@ class ViewController: NSViewController {
         updatePlayPauseButton()
         updateRepeatingButton()
         updateShufflingButton()
+    }
+    
+    func loadNoSongPlayingView() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = .fade
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        self.albumArtworkImageView.layer?.add(transition, forKey: nil)
+        self.albumArtworkImageView.image = NSImage(systemSymbolName: "waveform", accessibilityDescription: "")
     }
     
     func openSongInSpotify() {
