@@ -14,15 +14,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-//        let menu = NSMenu()
-//        menu.addItem(NSMenuItem.separator())
-//        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
-//
-//        statusItem.menu = menu
+
         if let button = statusItem.button {
             button.action = #selector(togglePopover(_:))
         }
-        popover.contentViewController = MenuBarViewController.freshController()
+        // popover.contentViewController = ViewController.freshController()
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -34,11 +30,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func togglePopover(_ sender: Any?) {
-      if popover.isShown {
-        closePopover(sender: sender)
-      } else {
-        showPopover(sender: sender)
-      }
+//      if popover.isShown {
+//        closePopover(sender: sender)
+//      } else {
+//        showPopover(sender: sender)
+//      }
     }
 
     func showPopover(sender: Any?) {

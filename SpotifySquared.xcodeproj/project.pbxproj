@@ -37,7 +37,6 @@
 		D8C0737827F06451006F70F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D8C0737A27F06453006F70F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8C0737D27F06453006F70F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D8C0737F27F06453006F70F1 /* MusicWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicWidget.entitlements; sourceTree = "<group>"; };
 		D8C0738927F068FB006F70F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,14 +98,12 @@
 			isa = PBXGroup;
 			children = (
 				D864CF9428029C5100FD1EAF /* Objects */,
-				D8E2BB2C27FEFD8D001A8750 /* New Group */,
 				D8341FC427F1E2CA002AC299 /* Models */,
 				D8C0738927F068FB006F70F1 /* Info.plist */,
 				D8C0738627F06518006F70F1 /* Controllers */,
 				D8C0737627F06451006F70F1 /* AppDelegate.swift */,
 				D8C0737A27F06453006F70F1 /* Assets.xcassets */,
 				D8C0737C27F06453006F70F1 /* Main.storyboard */,
-				D8C0737F27F06453006F70F1 /* MusicWidget.entitlements */,
 				D8AB553327F322BD00B7EC39 /* Views */,
 				D8AB553427F808F200B7EC39 /* Extensions.swift */,
 			);
@@ -121,13 +118,6 @@
 				D864CF8E280291E600FD1EAF /* StatusBarController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		D8E2BB2C27FEFD8D001A8750 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

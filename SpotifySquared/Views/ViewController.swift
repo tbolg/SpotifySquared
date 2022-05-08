@@ -16,12 +16,19 @@ class ViewController: NSViewController {
     // TODO: SHOW ON EVERY PAGE
     // TODO: DOUBLE CLICK TO SHOW SONG ON SPOTIFY
     
-    @IBOutlet weak var albumArtworkImageView: NSImageView!
+    @IBOutlet weak var controlView: NSVisualEffectView!
+    
+    @IBOutlet var albumArtworkImageView: NSImageView!
+    @IBOutlet weak var volumeImageView: NSImageView!
+    
     @IBOutlet weak var songLabelView: NSVisualEffectView!
     @IBOutlet weak var songNameLabel: NSTextField!
     @IBOutlet weak var songArtistLabel: NSTextField!
+    @IBOutlet weak var totalTimeLabel: NSTextField!
+    @IBOutlet weak var timePassedLabel: NSTextField!
+    @IBOutlet weak var controlViewSongNameLabel: NSTextField!
+    @IBOutlet weak var controlViewSongArtistAlbumLabel: NSTextField!
     
-    @IBOutlet weak var controlView: NSVisualEffectView!
     @IBOutlet weak var playPauseButton: NSButton!
     @IBOutlet weak var nextButton: NSButton!
     @IBOutlet weak var previousButton: NSButton!
@@ -32,15 +39,13 @@ class ViewController: NSViewController {
     @IBOutlet weak var muteButton: NSButton!
     @IBOutlet weak var skipForwardButton: NSButton!
     @IBOutlet weak var skipBackButton: NSButton!
+    
     @IBOutlet weak var volumeSlider: NSSlider!
     @IBOutlet weak var timeSlider: NSSlider!
-    @IBOutlet weak var totalTimeLabel: NSTextField!
-    @IBOutlet weak var timePassedLabel: NSTextField!
-    @IBOutlet weak var controlViewSongNameLabel: NSTextField!
-    @IBOutlet weak var controlViewSongArtistAlbumLabel: NSTextField!
-    @IBOutlet weak var volumeImageView: NSImageView!
-    @IBOutlet var settingsMenu: NSMenu!
     
+    @IBOutlet weak var timeProgressView: NSProgressIndicator!
+    
+    @IBOutlet var settingsMenu: NSMenu!
     
     var mouseIsInControlView: Bool = false
     var lastVolume: Float = 0
@@ -51,11 +56,21 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Configure views
-        albumArtworkImageView.imageScaling = .scaleAxesIndependently
-        songLabelView.wantsLayer = true
-        songLabelView.layer?.cornerRadius = 10
-        controlView.alphaValue = 0
+        // Configure album artwork image view
+        if let albumArtworkImageView = albumArtworkImageView {
+            albumArtworkImageView.imageScaling = .scaleAxesIndependently
+        }
+        
+        // Configure song label view
+        if let songLabelView = songLabelView {
+            songLabelView.wantsLayer = true
+            songLabelView.layer?.cornerRadius = 10
+        }
+        
+        // Configure control view
+        if let controlView = controlView {
+            controlView.alphaValue = 0
+        }
         
         // Load song data
         Spotify.shared.updateSongData()
@@ -73,37 +88,48 @@ class ViewController: NSViewController {
         
         // Volume slider
         let currentVolumeInteger = Int(self.getVolume() * 100)
-        self.volumeSlider.integerValue = currentVolumeInteger
-        self.setVolumeImageView(volumeLevel: currentVolumeInteger)
-        self.lastVolume = getVolume()
-        self.volumeSlider.controlSize = .mini
-        if (self.lastVolume == 0) {
-            self.isMuted = true
-        } else {
-            self.isMuted = false
+        if let volumeSlider = volumeSlider {
+            volumeSlider.integerValue = currentVolumeInteger
+            volumeSlider.controlSize = .mini
+            if let _ = volumeImageView {
+                self.setVolumeImageView(volumeLevel: currentVolumeInteger)
+            }
+            self.lastVolume = getVolume()
+            if (self.lastVolume == 0) {
+                self.isMuted = true
+            } else {
+                self.isMuted = false
+            }
         }
+        
         
         // Time slider
         self.updateTimeSlider()
         var _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeSlider), userInfo: nil, repeats: true)
         
         // Shuffle button
-        Spotify.shared.isShuffling { shuffling in
-            if (shuffling) {
-                self.shuffleButton.contentTintColor = self.tintColor
-            } else {
-                self.shuffleButton.contentTintColor = .secondaryLabelColor
+        if let shuffleButton = self.shuffleButton {
+            Spotify.shared.isShuffling { shuffling in
+                if (shuffling) {
+                    shuffleButton.contentTintColor = self.tintColor
+                } else {
+                    shuffleButton.contentTintColor = .secondaryLabelColor
+                }
             }
         }
         
+        
         // Repeat button
-        Spotify.shared.isRepeating { repeating in
-            if (repeating) {
-                self.repeatButton.contentTintColor = self.tintColor
-            } else {
-                self.repeatButton.contentTintColor = .secondaryLabelColor
+        if let repeatButton = repeatButton {
+            Spotify.shared.isRepeating { repeating in
+                if (repeating) {
+                    repeatButton.contentTintColor = self.tintColor
+                } else {
+                    repeatButton.contentTintColor = .secondaryLabelColor
+                }
             }
         }
+        
         
         // State changes to poll for
         var _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(pollForChanges), userInfo: nil, repeats: true)
@@ -141,16 +167,27 @@ class ViewController: NSViewController {
     
     @objc func updateTimeSlider() {
         Spotify.shared.getCurrentSliderPosition { position in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 let integerPosition = Int(position)
                 let totalDuration = Spotify.shared.currentSong.duration
                 // Set time slider
-                self.timeSlider.maxValue = totalDuration
-                self.timeSlider.integerValue = integerPosition
+                if let timeSlider = self.timeSlider {
+                    timeSlider.maxValue = totalDuration
+                    timeSlider.integerValue = integerPosition
+                }
+                
+                // Set time progress view
+                if let timeProgressView = timeProgressView {
+                    timeProgressView.maxValue = totalDuration
+                    
+                }
                 
                 // Set labels
-                self.timePassedLabel.stringValue = self.secondsToMinutes(seconds: integerPosition)
-                self.totalTimeLabel.stringValue = self.secondsToMinutes(seconds: Int(totalDuration))
+                if let timePassedLabel = timePassedLabel, let totalTimeLabel = totalTimeLabel {
+                    timePassedLabel.stringValue = self.secondsToMinutes(seconds: integerPosition)
+                    totalTimeLabel.stringValue = self.secondsToMinutes(seconds: Int(totalDuration))
+                }
+                
             }
             
         }
@@ -167,8 +204,12 @@ class ViewController: NSViewController {
         transition.duration = 0.5
         transition.type = .fade
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        self.albumArtworkImageView.layer?.add(transition, forKey: nil)
-        self.albumArtworkImageView.image = NSImage(systemSymbolName: "waveform", accessibilityDescription: "")
+        if let albumArtworkImageView = albumArtworkImageView {
+            
+            albumArtworkImageView.layer?.add(transition, forKey: nil)
+            albumArtworkImageView.image = NSImage(systemSymbolName: "waveform", accessibilityDescription: "")
+            
+        }
     }
     
     func openSongInSpotify() {
@@ -196,10 +237,22 @@ class ViewController: NSViewController {
     }
     
     func setSongLabels() {
-        self.songNameLabel.stringValue = Spotify.shared.currentSong.name
-        self.controlViewSongNameLabel.stringValue = Spotify.shared.currentSong.name
-        self.songArtistLabel.stringValue = Spotify.shared.currentSong.artist
-        self.controlViewSongArtistAlbumLabel.stringValue = "\(Spotify.shared.currentSong.artist) - \(Spotify.shared.currentSong.album)"
+        if let songNameLabel = songNameLabel {
+            songNameLabel.stringValue = Spotify.shared.currentSong.name
+        }
+        
+        if let controlViewSongNameLabel = controlViewSongNameLabel {
+            controlViewSongNameLabel.stringValue = Spotify.shared.currentSong.name
+        }
+        
+        if let songArtistLabel = songArtistLabel {
+            songArtistLabel.stringValue = Spotify.shared.currentSong.artist
+        }
+        
+        if let controlViewSongArtistAlbumLabel = controlViewSongArtistAlbumLabel {
+            controlViewSongArtistAlbumLabel.stringValue = "\(Spotify.shared.currentSong.artist) - \(Spotify.shared.currentSong.album)"
+        }
+        
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         guard let button = appDelegate.statusItem.button else {
             return
@@ -222,50 +275,59 @@ class ViewController: NSViewController {
     func downloadImage(from url: URL) {
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
             DispatchQueue.main.async() { [weak self] in
-                let transition = CATransition()
-                transition.duration = 0.5
-                transition.type = .fade
-                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-                self?.albumArtworkImageView.layer?.add(transition, forKey: nil)
-                self?.albumArtworkImageView.image = NSImage(data: data)
+                if let albumArtworkImageView = self?.albumArtworkImageView {
+                    let transition = CATransition()
+                    transition.duration = 0.5
+                    transition.type = .fade
+                    transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                    
+                    
+                    albumArtworkImageView.layer?.add(transition, forKey: nil)
+                    albumArtworkImageView.image = NSImage(data: data)
+                    
+                }
             }
         }
     }
     
     func showControlView() {
-        let transition = CATransition()
-        transition.duration = 0.25
-        transition.type = .fade
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        self.controlView.layer?.add(transition, forKey: nil)
-        self.controlView.alphaValue = 1
-        self.controlView.isHidden = false
+        if let controlView = controlView {
+            let transition = CATransition()
+            transition.duration = 0.25
+            transition.type = .fade
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            controlView.layer?.add(transition, forKey: nil)
+            controlView.alphaValue = 1
+            controlView.isHidden = false
+        }
     }
     
     func hideControlView() {
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.25
-            self.controlView.animator().alphaValue = 0
-        } completionHandler: {
-            self.controlView.isHidden = true
-            self.controlView.alphaValue = 1
-            if self.mouseIsInControlView {
-                self.showControlView()
+        if let controlView = controlView {
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = 0.25
+                controlView.animator().alphaValue = 0
+            } completionHandler: {
+                controlView.isHidden = true
+                controlView.alphaValue = 1
+                if self.mouseIsInControlView {
+                    self.showControlView()
+                }
             }
         }
     }
     
     func updatePlayPauseButton() {
-        Spotify.shared.isPlaying(completionHandler: { playing in
-            print(playing)
-            if (playing) {
-                self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
-            } else {
-                self.playPauseButton.image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: "")
-            }
-        })
+        if let playPauseButton = playPauseButton {
+            Spotify.shared.isPlaying(completionHandler: { playing in
+                if (playing) {
+                    playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+                } else {
+                    playPauseButton.image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: "")
+                }
+            })
+        }
     }
     
     func setVolume(level: Float) {
@@ -342,14 +404,16 @@ class ViewController: NSViewController {
     }
     
     func setVolumeImageView(volumeLevel: Int) {
-        if (volumeLevel == 0) {
-            self.volumeImageView.image = NSImage(systemSymbolName: "speaker.fill", accessibilityDescription: "")
-        } else if (volumeLevel > 0 && volumeLevel <= 33) {
-            self.volumeImageView.image = NSImage(systemSymbolName: "speaker.wave.1.fill", accessibilityDescription: "")
-        } else if (volumeLevel > 33 && volumeLevel <= 67) {
-            self.volumeImageView.image = NSImage(systemSymbolName: "speaker.wave.2.fill", accessibilityDescription: "")
-        } else {
-            self.volumeImageView.image = NSImage(systemSymbolName: "speaker.wave.3.fill", accessibilityDescription: "")
+        if let volumeImageView = volumeImageView {
+            if (volumeLevel == 0) {
+                volumeImageView.image = NSImage(systemSymbolName: "speaker.fill", accessibilityDescription: "")
+            } else if (volumeLevel > 0 && volumeLevel <= 33) {
+                volumeImageView.image = NSImage(systemSymbolName: "speaker.wave.1.fill", accessibilityDescription: "")
+            } else if (volumeLevel > 33 && volumeLevel <= 67) {
+                volumeImageView.image = NSImage(systemSymbolName: "speaker.wave.2.fill", accessibilityDescription: "")
+            } else {
+                volumeImageView.image = NSImage(systemSymbolName: "speaker.wave.3.fill", accessibilityDescription: "")
+            }
         }
     }
     
@@ -364,70 +428,82 @@ class ViewController: NSViewController {
     }
     
     func setShufflingState() {
-        Spotify.shared.isShuffling { shuffling in
-            if (shuffling) {
-                Spotify.shared.setShuffling(shuffling: false)
-                self.shuffleButton.contentTintColor = .secondaryLabelColor
-                return
+        if let shuffleButton = shuffleButton {
+            Spotify.shared.isShuffling { shuffling in
+                if (shuffling) {
+                    Spotify.shared.setShuffling(shuffling: false)
+                    shuffleButton.contentTintColor = .secondaryLabelColor
+                    return
+                }
+                Spotify.shared.setShuffling(shuffling: true)
+                shuffleButton.contentTintColor = self.tintColor
             }
-            Spotify.shared.setShuffling(shuffling: true)
-            self.shuffleButton.contentTintColor = self.tintColor
         }
     }
     
     func updateShufflingButton() {
-        Spotify.shared.isShuffling { shuffling in
-            if (shuffling) {
-                self.shuffleButton.contentTintColor = self.tintColor
-                return
+        if let shuffleButton = shuffleButton {
+            Spotify.shared.isShuffling { shuffling in
+                if (shuffling) {
+                    shuffleButton.contentTintColor = self.tintColor
+                    return
+                }
+                shuffleButton.contentTintColor = .secondaryLabelColor
             }
-            self.shuffleButton.contentTintColor = .secondaryLabelColor
         }
     }
     
     func setRepeatingState() {
-        Spotify.shared.isRepeating { repeating in
-            if (repeating) {
-                Spotify.shared.setRepeating(repeating: false)
-                self.repeatButton.contentTintColor = .secondaryLabelColor
-                return
+        if let repeatButton = repeatButton {
+            Spotify.shared.isRepeating { repeating in
+                if (repeating) {
+                    Spotify.shared.setRepeating(repeating: false)
+                    repeatButton.contentTintColor = .secondaryLabelColor
+                    return
+                }
+                Spotify.shared.setRepeating(repeating: true)
+                repeatButton.contentTintColor = self.tintColor
             }
-            Spotify.shared.setRepeating(repeating: true)
-            self.repeatButton.contentTintColor = self.tintColor
         }
     }
     
     func updateRepeatingButton() {
-        Spotify.shared.isRepeating { repeating in
-            if (repeating) {
-                self.repeatButton.contentTintColor = self.tintColor
-                return
+        if let repeatButton = repeatButton {
+            Spotify.shared.isRepeating { repeating in
+                if (repeating) {
+                    repeatButton.contentTintColor = self.tintColor
+                    return
+                }
+                repeatButton.contentTintColor = .secondaryLabelColor
             }
-            self.repeatButton.contentTintColor = .secondaryLabelColor
-            
         }
     }
     
     @IBAction func playPauseClicked(_ sender: Any) {
-        Spotify.shared.playOrPause() { playerState in
-            if (playerState == "playing") {
-                self.playPauseButton.image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: "")
-            } else {
-                self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+        if let playPauseButton = playPauseButton {
+            Spotify.shared.playOrPause() { playerState in
+                if (playerState == "playing") {
+                    playPauseButton.image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: "")
+                } else {
+                    playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+                }
             }
         }
-        
     }
     
     @IBAction func nextSongClicked(_ sender: Any) {
-        Spotify.shared.nextSong() {
-            self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+        if let playPauseButton = playPauseButton {
+            Spotify.shared.nextSong() {
+                playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+            }
         }
     }
     
     @IBAction func previousSongClicked(_ sender: Any) {
-        Spotify.shared.previousSong() {
-            self.playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+        if let playPauseButton = playPauseButton {
+            Spotify.shared.previousSong() {
+                playPauseButton.image = NSImage(systemSymbolName: "pause.fill", accessibilityDescription: "")
+            }
         }
     }
     
@@ -443,25 +519,27 @@ class ViewController: NSViewController {
     }
     
     @IBAction func muteClicked(_ sender: Any) {
-        if (self.isMuted) {
-            self.isMuted = false
-            self.setVolume(level: lastVolume)
-            let lastVolumeInt = Int(self.lastVolume * 100)
-            self.volumeSlider.integerValue = lastVolumeInt
-            self.setVolumeImageView(volumeLevel: lastVolumeInt)
-            self.muteButton.contentTintColor = .secondaryLabelColor
-        } else {
-            self.lastVolume = self.getVolume()
-            self.isMuted = true
-            self.volumeSlider.integerValue = 0
-            self.setVolume(level: 0)
-            self.setVolumeImageView(volumeLevel: 0)
-            self.muteButton.contentTintColor = self.tintColor
+        if let volumeSlider = volumeSlider, let muteButton = muteButton {
+            if (self.isMuted) {
+                self.isMuted = false
+                self.setVolume(level: lastVolume)
+                let lastVolumeInt = Int(self.lastVolume * 100)
+                volumeSlider.integerValue = lastVolumeInt
+                self.setVolumeImageView(volumeLevel: lastVolumeInt)
+                muteButton.contentTintColor = .secondaryLabelColor
+            } else {
+                self.lastVolume = self.getVolume()
+                self.isMuted = true
+                volumeSlider.integerValue = 0
+                self.setVolume(level: 0)
+                self.setVolumeImageView(volumeLevel: 0)
+                muteButton.contentTintColor = self.tintColor
+            }
         }
     }
     
-    @IBAction func exitClicked(_ sender: Any) {
-        NSApplication.shared.terminate(self)
+    @IBAction func exitClicked(_ sender: NSButton) {
+        sender.window?.close()
     }
     
     @IBAction func skipBackClicked(_ sender: Any) {
@@ -492,3 +570,15 @@ class ViewController: NSViewController {
     
 }
 
+
+extension ViewController {
+    
+    static func freshController() -> ViewController {
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+        let identifier = NSStoryboard.SceneIdentifier("MenuBarViewController")
+        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? ViewController else {
+            fatalError("Can't find MenuBarViewController. Check Main.storyboard")
+        }
+        return viewcontroller
+    }
+}
