@@ -19,6 +19,7 @@ class SpotifyWindowController: NSWindowController {
         if let window = window {
             window.isMovableByWindowBackground = true
             window.isMovable = true
+            window.level = .floating
         }
     }
     
